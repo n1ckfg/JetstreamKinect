@@ -7,6 +7,4 @@ sudo apt-get update
 sudo apt install k4a-tools
 sudo apt install libk4a1.4-dev
 
-git clone https://github.com/n1ckfg/Azure-Kinect-Sensor-SDK ../
-cd ../Azure-Kinect-Sensor-SDK
-sudo cp scripts/99-k4a.rules /etc/udev/rules.d/
+sudo cp 99-k4a.rules /etc/udev/rules.d/
