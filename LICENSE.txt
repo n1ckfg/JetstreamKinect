@@ -1,5 +1,5 @@
 JetstreamKinect
-Copyright (c) 2020 Nick Fox-Gieg
+Copyright (c) 2022 Nick Fox-Gieg
 https://fox-gieg.com
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

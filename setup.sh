@@ -25,5 +25,6 @@ git clone https://github.com/n1ckfg/ofxSSLManager
 git clone https://github.com/n1ckfg/ofxSSLManager
 git clone https://github.com/n1ckfg/ofxJSON
 git clone https://github.com/n1ckfg/ofxCrypto
+git clone https://github.com/n1ckfg/ofxAzureKinect
 
 cd $DIR

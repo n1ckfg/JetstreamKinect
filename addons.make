@@ -11,4 +11,4 @@ ofxPoco
 ofxSSLManager
 ofxJSON
 ofxCrypto
-
+ofxAzureKinect
