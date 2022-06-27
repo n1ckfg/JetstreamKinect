@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<settings>
+    <osc_host>BrazilV.local</osc_host>
+    <osc_port>7110</osc_port>
+    <stream_port>7111</stream_port>
+    <ws_port>7112</ws_port>
+    <post_port>7113</post_port>
+    <!-- * -->
+    <app_framerate>60</app_framerate>
+    <cam_id>0</cam_id>
+    <cam_framerate>30</cam_framerate>
+    <cam_rotation>0</cam_rotation>
+    <width>640</width>
+    <height>480</height>
+    <debug>1</debug>
+    <!-- * -->
+    <rpi_cam_version>2</rpi_cam_version>
+    <still_compression>100</still_compression>
+    <!-- * -->
+    <send_osc>1</send_osc>
+    <send_ws>1</send_ws>
+    <send_mjpeg>1</send_mjpeg>
+    <send_http>1</send_http>
+    <!-- * -->
+    <brightest_pixel>0</brightest_pixel>
+    <blobs>1</blobs>
+    <contours>0</contours>
+    <sync_video>0</sync_video>
+    <!-- * -->
+    <sync_video_quality>3</sync_video_quality>
+    <video_color>0</video_color>
+    <contour_slices>1</contour_slices>
+    <threshold>120</threshold>
+    <sharpness>50</sharpness>
+	<contrast>0</contrast>
+	<brightness>55</brightness>
+	<iso>800</iso>
+	<exposure_mode>0</exposure_mode>
+    <exposure_compensation>0</exposure_compensation>
+	<shutter_speed>100000</shutter_speed>
+    <!-- * -->
+    <max_stream_connections>5</max_stream_connections>
+    <max_stream_bitrate>256</max_stream_bitrate>
+    <max_stream_framerate>30</max_stream_framerate>
+    <max_stream_queue>1</max_stream_queue>
+</settings>
