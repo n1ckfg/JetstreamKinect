@@ -53,7 +53,7 @@ void ofApp::setup() {
     }
     
     //cam.setup(width, height, camFramerate, videoColor); // color/gray;
-	grabberSetup(camId, camFramerate, width, height);
+	kinectSetup();
 
     camRotation = settings.getValue("settings:cam_rotation", 0); 
     camSharpness = settings.getValue("settings:sharpness", 0); 
@@ -156,23 +156,22 @@ void ofApp::setup() {
     }
 }
 
-void ofApp::grabberSetup(int _id, int _fps, int _width, int _height) {
-    //get back a list of devices.
-    vector<ofVideoDevice> devices = cam.listDevices();
+void ofApp::kinectSetup() {
+	ofLogNotice(__FUNCTION__) << "Found " << ofxAzureKinect::Device::getInstalledCount() << " installed devices.";
 
-    for(size_t i = 0; i < devices.size(); i++){
-        if(devices[i].bAvailable){
-            //log the device
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
-        }else{
-            //log the device and note it as unavailable
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
-        }
-    }
+	// Open Kinect.
+	if (this->cam.open()) {
+		auto kinectSettings = ofxAzureKinect::DeviceSettings();
+		kinectSettings.updateIr = false;
+		kinectSettings.updateColor = true;
+		kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1080P;
+		kinectSettings.updateVbo = false;
+		this->cam.startCameras(kinectSettings);
+	}
+}
 
-    cam.setDeviceID(_id);
-    cam.setDesiredFrameRate(_fps);
-    cam.initGrabber(_width, _height);
+void ofApp::exit() {
+	this->cam.close();
 }
 
 //--------------------------------------------------------------
@@ -184,10 +183,16 @@ void ofApp::update() {
     //if (!frame.empty()) {
         //toOf(frame, gray.getPixelsRef());
 
-    cam.update();
+    //cam.update();
 
-    if (cam.isFrameNew()) {
-		ofPixels tempPixels = cam.getPixelsRef();
+    if (cam.isStreaming() && cam.isFrameNew()) {
+		/*
+		this->cam.getDepthInColorTex()
+		this->cam.getColorToWorldTex()
+		this->cam.getColorTex()
+		*/
+		
+		ofPixels tempPixels = cam.getColorInDepthPix();
 		gray.setFromPixels(tempPixels);
 		frame = toCv(gray);
 		
@@ -346,7 +351,8 @@ void ofApp::draw() {
 		fbo.draw(0,0);
 		
         stringstream info;
-        info << cam.getWidth() << "x" << cam.getHeight() << " @ "<< ofGetFrameRate() <<"fps"<< "\n";
+        //info << cam.getWidth() << "x" << cam.getHeight() << " @ "<< ofGetFrameRate() <<"fps"<< "\n";
+        info << " @ "<< ofGetFrameRate() <<"fps"<< "\n";
         ofDrawBitmapStringHighlight(info.str(), 10, 10, ofColor::black, ofColor::yellow);
     }
 }
@@ -567,6 +573,6 @@ void ofApp::keyPressed(int key) {
     // For Xcode 4.4 and greater, see this forum post on instructions on installing the SDK
     // http://forum.openframeworks.cc/index.php?topic=10343
     if (key == 's' || key == 'S') {
-        cam.videoSettings();
+        //cam.videoSettings();
     }
 }

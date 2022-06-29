@@ -8,6 +8,7 @@
 #include "ofxHTTP.h"
 #include "ofxJSONElement.h"
 #include "ofxCrypto.h"
+#include "ofxAzureKinect.h"
 
 #define NUM_MESSAGES 30 // how many past ws messages we want to keep
 
@@ -15,6 +16,7 @@ class ofApp : public ofBaseApp {
 
     public:	
 	void setup();
+	void exit();
 	void update();
 	void draw();
 		
@@ -74,7 +76,8 @@ class ofApp : public ofBaseApp {
 	ofBuffer contourColorBuffer;
 	ofBuffer contourPointsBuffer;
 
-	ofVideoGrabber cam;
+	ofxAzureKinect::Device cam;
+	
 	cv::Mat frame, frameProcessed;
 	ofImage gray;
 	int syncVideoQuality; // 5 best to 1 worst, default 3 medium
@@ -118,6 +121,6 @@ class ofApp : public ofBaseApp {
 	ofxCv::TrackingColorMode trackingColorMode; // RGB, HSV, H, HS; default RGB
 
     void keyPressed(int key);
-	void grabberSetup(int _id, int _fps, int _width, int _height);
+	void kinectSetup();
 
 };
