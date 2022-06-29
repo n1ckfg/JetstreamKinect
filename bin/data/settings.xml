@@ -28,16 +28,16 @@
     <sync_video>0</sync_video>
     <!-- * -->
     <sync_video_quality>3</sync_video_quality>
-    <video_color>0</video_color>
+    <video_color>1</video_color>
     <contour_slices>1</contour_slices>
     <threshold>120</threshold>
     <sharpness>50</sharpness>
-	<contrast>0</contrast>
-	<brightness>55</brightness>
-	<iso>800</iso>
-	<exposure_mode>0</exposure_mode>
+    <contrast>0</contrast>
+    <brightness>55</brightness>
+    <iso>800</iso>
+    <exposure_mode>0</exposure_mode>
     <exposure_compensation>0</exposure_compensation>
-	<shutter_speed>100000</shutter_speed>
+    <shutter_speed>100000</shutter_speed>
     <!-- * -->
     <max_stream_connections>5</max_stream_connections>
     <max_stream_bitrate>256</max_stream_bitrate>

@@ -53,7 +53,7 @@ void ofApp::setup() {
     }
     
     //cam.setup(width, height, camFramerate, videoColor); // color/gray;
-	kinectSetup();
+	kinectSetup(720);
 
     camRotation = settings.getValue("settings:cam_rotation", 0); 
     camSharpness = settings.getValue("settings:sharpness", 0); 
@@ -156,16 +156,31 @@ void ofApp::setup() {
     }
 }
 
-void ofApp::kinectSetup() {
+void ofApp::kinectSetup(int res) {
 	ofLogNotice(__FUNCTION__) << "Found " << ofxAzureKinect::Device::getInstalledCount() << " installed devices.";
 
 	// Open Kinect.
 	if (this->cam.open()) {
 		auto kinectSettings = ofxAzureKinect::DeviceSettings();
+
 		kinectSettings.updateIr = false;
 		kinectSettings.updateColor = true;
-		kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1080P;
 		kinectSettings.updateVbo = false;
+		
+		if (res == 720) {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_720P; // 1280 * 720 16:9
+		} else if (res == 1440) {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1440P; // 2560 * 1440 16:9
+		} else if (res == 1536) {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1536P; // 2048 * 1536 4:3
+		} else if (res == 2160) {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_2160P; // 3840 * 2160 16:9
+		} else if (res == 3072) {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_3072P; // 4096 * 3072 4:3
+		} else {
+			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1080P; // 1920 * 1080 16:9
+		}
+		
 		this->cam.startCameras(kinectSettings);
 	}
 }
@@ -194,6 +209,7 @@ void ofApp::update() {
 		
 		ofPixels tempPixels = cam.getColorInDepthPix();
 		gray.setFromPixels(tempPixels);
+		//cout << "!!!" << gray.getWidth() << " x " << gray.getHeight() << endl;
 		frame = toCv(gray);
 		
         if (sendMjpeg) streamServer.send(gray.getPixels());

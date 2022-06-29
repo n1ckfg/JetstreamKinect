@@ -121,6 +121,6 @@ class ofApp : public ofBaseApp {
 	ofxCv::TrackingColorMode trackingColorMode; // RGB, HSV, H, HS; default RGB
 
     void keyPressed(int key);
-	void kinectSetup();
+	void kinectSetup(int res);
 
 };
