@@ -200,14 +200,14 @@ void ofApp::update() {
 
     //cam.update();
 
-    if (cam.isStreaming() && cam.isFrameNew()) {
+    if (cam.isFrameNew()) {
 		/*
 		this->cam.getDepthInColorTex()
 		this->cam.getColorToWorldTex()
 		this->cam.getColorTex()
 		*/
 		
-		ofPixels tempPixels = cam.getColorInDepthPix();
+		ofPixels tempPixels = cam.getColorPix();
 		gray.setFromPixels(tempPixels);
 		//cout << "!!!" << gray.getWidth() << " x " << gray.getHeight() << endl;
 		frame = toCv(gray);
