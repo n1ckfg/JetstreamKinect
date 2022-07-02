@@ -77,7 +77,9 @@ class ofApp : public ofBaseApp {
 	ofBuffer contourPointsBuffer;
 
 	ofxAzureKinect::Device cam;
-	
+	ofShader shader;
+	ofPlanePrimitive plane;
+		
 	cv::Mat frame, frameProcessed;
 	ofImage gray;
 	int syncVideoQuality; // 5 best to 1 worst, default 3 medium
@@ -122,5 +124,10 @@ class ofApp : public ofBaseApp {
 
     void keyPressed(int key);
 	void kinectSetup(int res);
+
+	int kColorWidth = 1920;
+	int kColorHeight = 1080;
+	int kDepthWidth = 512;
+	int kDepthHeight = 512;
 
 };

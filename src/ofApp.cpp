@@ -55,6 +55,18 @@ void ofApp::setup() {
     //cam.setup(width, height, camFramerate, videoColor); // color/gray;
 	kinectSetup(720);
 
+	// Load shader.
+	auto shaderSettings = ofShaderSettings();
+	shaderSettings.shaderFiles[GL_VERTEX_SHADER] = "shaders/perpixel-ou.vert";
+	shaderSettings.shaderFiles[GL_FRAGMENT_SHADER] = "shaders/perpixel-ou.frag";
+	shaderSettings.bindDefaults = true;
+	if (shader.setup(shaderSettings)) {
+		ofLogNotice(__FUNCTION__) << "Success loading shader!";
+	}
+
+	plane.set(kColorWidth/2, kColorHeight, 10, 10);
+	plane.mapTexCoords(0, 0, kColorWidth, kColorHeight);
+
     camRotation = settings.getValue("settings:cam_rotation", 0); 
     camSharpness = settings.getValue("settings:sharpness", 0); 
     camContrast = settings.getValue("settings:contrast", 0); 
@@ -169,16 +181,28 @@ void ofApp::kinectSetup(int res) {
 		
 		if (res == 720) {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_720P; // 1280 * 720 16:9
+			kColorWidth = 1280;
+			kColorHeight = 720;
 		} else if (res == 1440) {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1440P; // 2560 * 1440 16:9
+			kColorWidth = 2560;
+			kColorHeight = 1440;
 		} else if (res == 1536) {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1536P; // 2048 * 1536 4:3
+			kColorWidth = 2048;
+			kColorHeight = 1536;
 		} else if (res == 2160) {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_2160P; // 3840 * 2160 16:9
+			kColorWidth = 3840;
+			kColorHeight = 2160;
 		} else if (res == 3072) {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_3072P; // 4096 * 3072 4:3
+			kColorWidth = 4096;
+			kColorHeight = 3072;
 		} else {
 			kinectSettings.colorResolution = K4A_COLOR_RESOLUTION_1080P; // 1920 * 1080 16:9
+			kColorWidth = 1920;
+			kColorHeight = 1080;
 		}
 		
 		this->cam.startCameras(kinectSettings);
