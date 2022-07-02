@@ -15,6 +15,7 @@ int main() {
 	ofCreateWindow(settings);
 #else
     ofGLFWWindowSettings settings;
+	settings.setGLVersion(3, 2);
     settings.numSamples = 0;
 	settings.setSize(w, h);
     ofCreateWindow(settings);                       
