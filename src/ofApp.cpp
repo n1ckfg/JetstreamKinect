@@ -230,9 +230,22 @@ void ofApp::update() {
 		this->cam.getColorToWorldTex()
 		this->cam.getColorTex()
 		*/
+		fbo.begin();
+		shader.begin();
+		shader.setUniformTexture("uColorTex", cam.getColorTex(), 0);
+		shader.setUniformTexture("uDepthTex", cam.getDepthInColorTex(), 1);
+		shader.setUniform2i("uFrameSize", cam.getColorTex().getWidth(), cam.getColorTex().getHeight());
+
+		ofPushMatrix();
+		ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
+		plane.draw();
+		ofPopMatrix();
+		shader.end();
+		fbo.end();
 		
-		ofPixels tempPixels = cam.getColorPix();
-		gray.setFromPixels(tempPixels);
+		//ofPixels tempPixels;
+		fbo.readToPixels(pixels);// = cam.getColorPix();
+		gray.setFromPixels(pixels);
 		//cout << "!!!" << gray.getWidth() << " x " << gray.getHeight() << endl;
 		frame = toCv(gray);
 		

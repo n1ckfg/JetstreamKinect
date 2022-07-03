@@ -5,7 +5,7 @@
 int main() {
 	
 	int w = 640;
-	int h = 480;
+	int h = 720;
 	
 	// setup the GL context
 #ifdef TARGET_OPENGLES

@@ -129,5 +129,5 @@ class ofApp : public ofBaseApp {
 	int kColorHeight = 1080;
 	int kDepthWidth = 512;
 	int kDepthHeight = 512;
-
+		
 };
