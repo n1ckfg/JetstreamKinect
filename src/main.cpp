@@ -12,12 +12,14 @@ int main() {
 	ofGLESWindowSettings settings;
 	settings.glesVersion = 2;
 	settings.setSize(w, h);
+	//settings.windowMode = OF_FULLSCREEN;
 	ofCreateWindow(settings);
 #else
     ofGLFWWindowSettings settings;
 	settings.setGLVersion(3, 2);
     settings.numSamples = 0;
 	settings.setSize(w, h);
+	//settings.windowMode = OF_FULLSCREEN;
     ofCreateWindow(settings);                       
 #endif
 
